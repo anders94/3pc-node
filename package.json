@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "leveldown": "^6.1.0",
-    "levelup": "^5.1.1"
+    "levelup": "^5.1.1",
+    "restify": "^8.6.0",
+    "restify-clients": "^3.1.0"
   }
 }
