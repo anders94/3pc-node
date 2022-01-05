@@ -6,14 +6,16 @@ let db;
 const get = async (key) => {
     let value, err;
     try {
-	value = await db.get(key);
+	const tmp = await db.get(key);
+	if (tmp)
+	    value = JSON.parse(tmp.toString());
     }
     catch (e) {
 	if (e.type != 'NotFoundError')
 	    err = e;
     }
     finally {
-	return err ? err : value ? value.toString() : '';
+	return err ? err : value;
     }
 };
 
