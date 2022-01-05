@@ -1,0 +1,15 @@
+{
+  "name": "3pc-node",
+  "version": "0.0.1",
+  "description": "a 3 phase commit implementation in node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "leveldown": "^6.1.0",
+    "levelup": "^5.1.1"
+  }
+}
