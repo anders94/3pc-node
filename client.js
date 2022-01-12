@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const url = process.env.URL || 'http://localhost:3000';
-const path = process.argv[2] || '/data/test';
+const path = process.argv[2] || '/v1/data/test';
 //const instance = crypto.randomUUID();
 const instance = '1873e836-2fd8-4eee-a02c-35822ae99b8b';
 
