@@ -1,4 +1,3 @@
-const clients = require('restify-clients');
 const crypto = require('crypto');
 
 const url = process.env.URL || 'http://localhost:3000';
@@ -6,26 +5,35 @@ const path = process.argv[2] || '/data/test';
 //const instance = crypto.randomUUID();
 const instance = '1873e836-2fd8-4eee-a02c-35822ae99b8b';
 
-const client = clients.createJsonClient({
-    url: url,
-    version: '~1.0'
-});
+let fetch;
 
-/*
-console.log('GET', url+path);
-client.get(path, (err, req, res, obj) => {
-    console.log(err, obj);
-});
-*/
+const get = async (key) => {
+    const res = await fetch(url + path);
+    return res.text();
+};
+    
+const start = async () => {
+    fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
-/*
-console.log('PUT', url+path);
-client.put(path, 'something from the client', (err, req, res, obj) => {
-    console.log(err, obj);
-});
-*/
+    let res;
+    res = await fetch(url + path, {
+	method: 'PUT',
+	body: 'some sample data ' + new Date()
+    });
+    console.log('PUT', url + path, await res.text());
+    
+    res = await get(path);
+    console.log('GET', url + path, res);
 
-console.log('POST', url+path);
-client.post(path, JSON.stringify({user: instance, command: 'lock'}), (err, req, res, obj) => {
-    console.log(err, obj);
-});
+    res = await fetch(url + path, {
+	method: 'POST',
+	body: JSON.stringify({user: instance, command: 'lock'})
+    });
+    console.log('PUT', url + path, await res.text());
+
+    res = await fetch(url + path);
+    console.log('GET', url + path, await res.text());
+
+};
+
+start();
