@@ -22,6 +22,7 @@ const get = async (key) => {
 module.exports = {
     init: () => db = levelup(leveldown('./data')),
     get: get,
-    put: async (key, value) => await db.put(key, Buffer.from(JSON.stringify(value)))
+    put: async (key, value) => await db.put(key, Buffer.from(JSON.stringify(value))),
+    del: async (key) => await db.del(key)
 };
 
