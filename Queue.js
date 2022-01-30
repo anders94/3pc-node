@@ -14,7 +14,7 @@ class Queue {
     enqueue = async (f) => {
 	if (typeof f === 'function') {
 	    this.list.push(f);
-	    this.run();
+	    await this.run();
 	}
     }
     dequeue = () => this.list.shift();
