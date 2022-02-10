@@ -10,7 +10,7 @@ module.exports = async (request, reply) => {
     }
     else {
 	const tmp = await storage.put(request.params.key, {lockedBy: '', value: request.body});
-	console.log('PUT', request.params.key, {lockedBy: '', value: request.body});
+	console.log('PUT', request.params.key, {lockedBy: [], value: request.body});
 	reply.send({success: tmp ? true : false});
 
     }
